@@ -1,8 +1,7 @@
-package br.senac.pr.api_pix_impresso.repository;
+package br.senac.pr.api_pix_impresso.repositories;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -11,8 +10,12 @@ import br.senac.pr.api_pix_impresso.models.Caixa;
 @Repository
 public class JdbcCaixaRepository implements CaixaRepository {
 
-  @Autowired
+  
   private JdbcTemplate jdbcTemplate;
+
+  public JdbcCaixaRepository(JdbcTemplate jdbcTemplate) {
+    this.jdbcTemplate = jdbcTemplate;
+  }
 
   @Override
   public int save(Caixa caixa) {
@@ -40,15 +43,19 @@ public class JdbcCaixaRepository implements CaixaRepository {
   }
 
   @Override
-  public List<Caixa> findAll() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'findAll'");
-  }
-
+    public List<Caixa> findAll() {
+        return jdbcTemplate
+            .query("SELECT ID, LOCALIZACAO, SALDO FROM CAIXAS",
+                (rs, rowNum) -> {
+                    return new Caixa(rs.getLong("ID"),
+                        rs.getString("LOCALIZACAO"),
+                        rs.getDouble("SALDO"));
+        });
+      }
   @Override
   public int deleteAll() {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'deleteAll'");
   }
-
-}
+    
+    }
