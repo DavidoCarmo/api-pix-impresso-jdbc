@@ -5,8 +5,6 @@ public class Caixa {
   private String localizacao;
   private double saldo;
 
-  
-
   public Caixa(Long id, String localizacao, double saldo) {
     this.id = id;
     this.localizacao = localizacao;

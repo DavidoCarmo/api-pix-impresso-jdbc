@@ -31,7 +31,25 @@ public class CaixaService {
     return caixaRepository.findAll();
   }
 
-  public int update(Caixa caixa) {
+  public Caixa updateSaldoCaixa(Long id, Double saldo) {
+    // Buscar um caixa com o id informado
+
+
+    
+    Caixa caixa = caixaRepository.findById(id);
+    // valida se o caixa existe
+    if (caixa == null) {
+      throw new Error("Caixa não encontrado");
+    }
+
+
+    // atualiza o saldo do caixa descontando o valor do saque
+    caixa.setSaldo(saldo);
+    caixaRepository.update(caixa);
+    return caixa;
+  }
+
+  public int update(Long id, Caixa caixa) {
     if (caixa == null) {
       throw new Error("Dados do caixa inválidos");
     }
