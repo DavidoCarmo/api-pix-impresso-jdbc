@@ -1,0 +1,18 @@
+meta {
+  name: Atualizar Total Caixa
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://localhost:8080/caixas/16
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "localizacao": "16 atualizado junto com valor",
+    "saldo": 2000
+  }
+}

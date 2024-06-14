@@ -1,6 +1,7 @@
 package br.senac.pr.api_pix_impresso.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import br.senac.pr.api_pix_impresso.models.Caixa;
 
@@ -9,7 +10,7 @@ public interface CaixaRepository {
 
   int update(Caixa caixa);
 
-  Caixa findById(Long id);
+  Optional<Caixa> findById(Long id);
 
   int deleteById(Long id);
 

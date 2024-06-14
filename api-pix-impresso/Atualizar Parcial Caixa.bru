@@ -5,14 +5,21 @@ meta {
 }
 
 patch {
-  url: http://localhost:8080/caixas
+  url: http://localhost:8080/caixas/1
   body: json
   auth: none
 }
 
+headers {
+  : 
+}
+
 body:json {
   {
-    "localizacao": "planalto",
-    "saldo": 500
+    "saldo": 11111
   }
+}
+
+body:text {
+  teste  
 }
