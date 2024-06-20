@@ -8,7 +8,7 @@ import br.senac.pr.api_pix_impresso.models.Caixa;
 import br.senac.pr.api_pix_impresso.repositories.JdbcCaixaRepository;
 
 @Service
-public class CaixaService {
+public class CaixaService implements BaseService<Caixa, Long> {
   private JdbcCaixaRepository caixaRepository;
 
   public CaixaService(JdbcCaixaRepository caixaRepository) {
@@ -35,7 +35,8 @@ public class CaixaService {
     caixaRepository.update(caixa);
   }
 
-  public int update(Caixa caixa) {
+  @Override
+  public void update(Caixa caixa) {
     if (caixa == null) {
       throw new Error("Dados do caixa inválidos");
     }
@@ -43,14 +44,11 @@ public class CaixaService {
     if (caixa.getId() <= 0 || caixa.getId() == null) {
       throw new Error("ID do caixa inválido");
     }
-    // TODO - Finalizar o método update no repository
-    return caixaRepository.update(caixa);
   }
 
   public Caixa findById(Long id) {
     return caixaRepository.findById(id).orElse(null);
   }
-
 
   public void deleteById(Long id) {
     caixaRepository.deleteById(id);

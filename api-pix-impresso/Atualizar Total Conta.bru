@@ -1,0 +1,19 @@
+meta {
+  name: Atualizar Total Conta
+  type: http
+  seq: 11
+}
+
+put {
+  url: http://localhost:8080/contas/2
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "agencia": 111111,
+      "numeroConta": 11111
+      
+  }
+}
