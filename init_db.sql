@@ -10,7 +10,7 @@ drop CONSTRAINT transacoes_caixa;
 DROP table if exists transacoes;
 
 CREATE TABLE contas (
-  ID SERIAL,
+  ID SERIAL ,
   AGENCIA INT,
   NUMERO_CONTA INT,
   DIGITO_VERIFICADOR INT,

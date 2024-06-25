@@ -1,0 +1,26 @@
+meta {
+  name: Criar Caixa
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:8080/caixas
+  body: json
+  auth: none
+}
+
+headers {
+  : 
+}
+
+body:json {
+  {
+    "localizacao": "primavera",
+    "saldo": 800
+  }
+}
+
+body:text {
+  teste  
+}

@@ -1,0 +1,25 @@
+meta {
+  name: Atualizar Saldo Conta
+  type: http
+  seq: 7
+}
+
+patch {
+  url: http://localhost:8080/contas/13
+  body: json
+  auth: none
+}
+
+headers {
+  : 
+}
+
+body:json {
+  {
+    "saldo": 300
+  }
+}
+
+body:text {
+  teste  
+}

@@ -1,0 +1,26 @@
+meta {
+  name: Atualizar Total Caixa
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://localhost:8080/caixas/13
+  body: json
+  auth: none
+}
+
+headers {
+  : 
+}
+
+body:json {
+  {
+    "localizacao": "Outro Lugar Legal",
+    "saldo": 2000
+  }
+}
+
+body:text {
+  teste  
+}

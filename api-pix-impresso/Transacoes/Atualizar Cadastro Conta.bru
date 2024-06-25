@@ -1,0 +1,27 @@
+meta {
+  name: Atualizar Cadastro Conta
+  type: http
+  seq: 8
+}
+
+patch {
+  url: http://localhost:8080/contas/1/updateCadastro
+  body: json
+  auth: none
+}
+
+headers {
+  : 
+}
+
+body:json {
+  {
+    "nome": "Fulano de Tal",
+    "cpf": "1234567891",
+    "tipoConta": 1
+  }
+}
+
+body:text {
+  teste  
+}

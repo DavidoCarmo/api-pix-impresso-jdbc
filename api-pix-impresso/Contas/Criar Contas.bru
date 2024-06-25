@@ -1,0 +1,30 @@
+meta {
+  name: Criar Contas
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:8080/contas
+  body: json
+  auth: none
+}
+
+headers {
+  : 
+}
+
+body:json {
+  {
+    "agencia": 123,
+    "numeroConta": 1234,
+    "digitoVerificador": 1,
+    "nome": "Ronaldo",
+    "cpf": "2234567895",
+    "tipoConta": 1
+  }
+}
+
+body:text {
+  teste  
+}
