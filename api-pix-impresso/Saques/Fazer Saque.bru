@@ -1,0 +1,20 @@
+meta {
+  name: Fazer Saque
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8080/saques
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "numeroCartao": "1234123456729012",
+    "senha": "",
+    "valor": 500.00,
+    "caixaId": 1
+  }
+}

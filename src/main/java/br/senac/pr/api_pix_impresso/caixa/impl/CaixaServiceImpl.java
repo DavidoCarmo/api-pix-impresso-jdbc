@@ -61,4 +61,26 @@ public class CaixaServiceImpl implements CaixaService {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'save'");
   }
+
+  public Caixa temSaldo(Long caixaId, Double valor) {
+    var caixa = caixaRepository.findById(caixaId).orElse(null);
+    if (caixa == null) {
+      throw new Error("Caixa inválido");
+    }
+
+    if (caixa.getSaldo() < valor) {
+      throw new Error("Saldo insuficiente");
+    }
+    return caixa;
+  }
+
+  public void efetuarDebito(Caixa caixa, Double valorDebito) {
+
+    Caixa caixaAtualizado = new Caixa(caixa.getId(),
+        caixa.getLocalizacao(),
+        caixa.getSaldo() - valorDebito);
+
+    caixaRepository.update(caixaAtualizado);
+
+  }
 }

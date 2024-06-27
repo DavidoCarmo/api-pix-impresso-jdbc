@@ -126,4 +126,20 @@ public class JdbcContaRepository implements BaseJdbcRepository<Conta, Long> {
     throw new UnsupportedOperationException("Unimplemented method 'deleteAll'");
   }
 
+  public Optional<Conta> findByNumeroCartao(String numeroCartao) {
+    String sql = """
+         SELECT id, agencia, numero_conta, digito_verificador,
+                nome, cpf, tipo_conta,
+                numero_cartao, senha, saldo FROM contas WHERE numero_cartao = :numero_cartao
+        """;
+
+    Map<String, Object> parameters = Collections
+        .singletonMap("numero_cartao", numeroCartao);
+
+    var conta = namedParameterJdbcTemplate
+        .queryForStream(sql, parameters, contaRowMapper)
+        .findFirst();
+    return conta;
+  }
+
 }

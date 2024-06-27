@@ -3,6 +3,7 @@ package br.senac.pr.api_pix_impresso.conta.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import br.senac.pr.api_pix_impresso.conta.ContaService;
@@ -96,4 +97,36 @@ public class ContaServiceImpl implements ContaService {
     contaRepository.update(conta);
     return contaToDetailContaMapper.apply(conta);
   }
+
+  public Conta getByNumeroCartao(String numeroCartao) {
+    var conta = contaRepository.findByNumeroCartao(numeroCartao).orElse(null);
+    return conta;
+  }
+
+  public Conta efetuarDebito(String numeroCartao, String senha, Double valor) {
+    // Obter a conta
+    var conta = contaRepository.findByNumeroCartao(numeroCartao).orElse(null);
+    // validar se a conta foi encontrada
+    if (conta == null) {
+      throw new Error("Conta não encontrada");
+    }
+
+    // Validar a senha
+    // se a senha da conta não for igual a senha informada
+    if (!conta.getSenha().equals(senha)) {
+      throw new Error("Conta inválida");
+    }
+
+    // Validar o saldo
+    if (conta.getSaldo() < valor) {
+      throw new Error("Saldo da conta insuficiente");
+    }
+
+    // Efetuar o debito
+    conta.setSaldo(conta.getSaldo() - valor);
+
+    contaRepository.update(conta);
+    return conta;
+  }
+
 }
